@@ -1,0 +1,26 @@
+# Local demo stack — backend (FastAPI) + frontend (Vite/nginx).
+# Runs entirely in MOCK_MODE; no cloud credentials required.
+#
+#   docker compose up --build
+#   backend  -> http://localhost:8080
+#   frontend -> http://localhost:5173
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: src/app/Dockerfile
+    environment:
+      MOCK_MODE: "true"
+      CORS_ORIGINS: "http://localhost:5173"
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

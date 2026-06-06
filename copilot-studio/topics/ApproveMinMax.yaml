@@ -1,0 +1,32 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: ApproveMinMax
+  intent:
+    displayName: Approve Min-Max
+    triggerQueries:
+      - approve the recommendation
+      - apply the min-max change
+
+  actions:
+    # Triggered by the approval card's Action.Submit payload.
+    - kind: InvokeConnectorAction
+      id: callApprove
+      connectionReference: call-foundry-sequential
+      operationId: approve
+      inputs:
+        sku: =Topic.sku
+        facility: =Topic.facility
+        new_min: =Topic.new_min
+        new_max: =Topic.new_max
+        approver_upn: =System.User.PrincipalName
+        rationale: =Topic.rationale
+      output:
+        binding:
+          result: Topic.write
+
+    - kind: SendActivity
+      id: confirm
+      activity: |
+        ✅ Updated **${Topic.sku}** at ${Topic.facility} to min ${Topic.new_min} / max ${Topic.new_max}.
+        Audit id: ${Topic.write.audit_id}

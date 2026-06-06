@@ -1,0 +1,86 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Min-Max Recommendations — ${facility}"
+    },
+    {
+      "type": "TextBlock",
+      "isSubtle": true,
+      "spacing": "None",
+      "text": "Reviewed ${formatDateTime(utcNow(), 'yyyy-MM-dd HH:mm')} · ${count} candidates"
+    },
+    {
+      "type": "Container",
+      "$data": "${recommendations}",
+      "separator": true,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "text": "${candidate.sku}",
+                  "wrap": true
+                },
+                {
+                  "type": "TextBlock",
+                  "isSubtle": true,
+                  "spacing": "None",
+                  "text": "Min ${candidate.current_min}→${candidate.recommended_min} · Max ${candidate.current_max}→${candidate.recommended_max} · ${formatNumber(mul(candidate.confidence,100),0)}%"
+                },
+                {
+                  "type": "TextBlock",
+                  "wrap": true,
+                  "spacing": "Small",
+                  "text": "${explanation}"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "verticalContentAlignment": "Center",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "text": "${if(decision=='reject','⛔ Blocked', if(decision=='approve_suggested','✔ Suggested','● Review'))}",
+                  "color": "${if(decision=='reject','Attention', if(decision=='approve_suggested','Good','Warning'))}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Approve selected",
+      "style": "positive",
+      "data": { "action": "approve_selected" }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Reject with reason",
+      "data": { "action": "reject" }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Ask why",
+      "data": { "action": "explain" }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "facility": "NJ-01",
+  "checked_at": "2026-06-05T20:00:00Z",
+  "results": [
+    { "sku": "CAB-750-12", "passed": false, "reasons": ["Active wave WV-2026-06-05-014 references SKU"], "blocking_wave_id": "WV-2026-06-05-014", "blocking_orders": ["SO-100455"] },
+    { "sku": "CHARD-750-12", "passed": true, "reasons": [], "blocking_wave_id": null, "blocking_orders": [] },
+    { "sku": "PINOT-750-6", "passed": true, "reasons": [], "blocking_wave_id": null, "blocking_orders": [] },
+    { "sku": "PROS-750-6", "passed": false, "reasons": ["Active wave WV-2026-06-05-031 references SKU"], "blocking_wave_id": "WV-2026-06-05-031", "blocking_orders": ["SO-100470"] }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Defer recommendation — ${sku}"
+    },
+    {
+      "type": "TextBlock",
+      "wrap": true,
+      "isSubtle": true,
+      "text": "${facility} · blocked by wave ${blocking_wave_id}"
+    },
+    {
+      "type": "Input.Text",
+      "id": "reason",
+      "placeholder": "Reason for deferring (e.g. active wave conflict)",
+      "isMultiline": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Confirm defer",
+      "data": { "action": "reject_confirm" }
+    }
+  ]
+}

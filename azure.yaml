@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: warehouse-replenishment-ai-demo
+metadata:
+  template: warehouse-replenishment-ai-demo@1.0.0
+
+# This template provisions the supporting Azure infrastructure for the demo's
+# live Foundry path. Databricks and D365 are always mocked, so no services are
+# deployed here — `azd provision` (or `azd up`) stands up the infrastructure and
+# writes the connection details to the azd environment.
+infra:
+  provider: bicep
+  path: infra
+  module: main

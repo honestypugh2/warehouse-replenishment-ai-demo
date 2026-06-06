@@ -1,0 +1,10 @@
+[
+  { "order_id": "SO-100455", "sku": "CAB-750-12", "facility": "NJ-01", "qty": 120, "status": "open" },
+  { "order_id": "SO-100456", "sku": "CHARD-750-12", "facility": "NJ-01", "qty": 60, "status": "open" },
+  { "order_id": "SO-100462", "sku": "MERL-750-12", "facility": "NJ-01", "qty": 96, "status": "open" },
+  { "order_id": "SO-100470", "sku": "PROS-750-6", "facility": "NJ-01", "qty": 78, "status": "open" },
+  { "order_id": "SO-100474", "sku": "GRIG-750-12", "facility": "NJ-01", "qty": 48, "status": "open" },
+  { "order_id": "SO-100481", "sku": "ROSE-750-12", "facility": "CA-02", "qty": 240, "status": "open" },
+  { "order_id": "SO-100488", "sku": "SPARK-750-6", "facility": "CA-02", "qty": 36, "status": "open" },
+  { "order_id": "SO-100495", "sku": "BORD-750-12", "facility": "CA-02", "qty": 120, "status": "open" }
+]

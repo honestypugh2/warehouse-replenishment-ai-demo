@@ -1,0 +1,45 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: GetReplenRecommendations
+  intent:
+    displayName: Get Replenishment Recommendations
+    triggerQueries:
+      - show me today's min-max recommendations
+      - what are today's replenishment recommendations
+      - daily replen review for {facility}
+      - validate min-max against active waves
+
+  actions:
+    - kind: Question
+      id: askFacility
+      variable: Topic.facility
+      prompt: Which facility should I review? (e.g. NJ-01)
+      entity: StringPrebuiltEntity
+
+    - kind: SendActivity
+      id: ack
+      activity: Pulling today's candidates for ${Topic.facility} and validating against active waves…
+
+    # Calls the Foundry sequential workflow via the custom connector action.
+    - kind: InvokeConnectorAction
+      id: callFoundrySequential
+      connectionReference: call-foundry-sequential
+      operationId: runSequential
+      inputs:
+        facility: =Topic.facility
+      output:
+        binding:
+          result: Topic.result
+
+    - kind: SendActivity
+      id: renderApprovalCard
+      activity:
+        attachments:
+          - kind: AdaptiveCardTemplate
+            cardContent: "={ approvalCard: Topic.result }"  # see adaptive-cards/approval-card.json
+
+    - kind: SetVariable
+      id: setComplete
+      variable: Topic.complete
+      value: true

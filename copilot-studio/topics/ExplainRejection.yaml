@@ -1,0 +1,45 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: ExplainRejection
+  intent:
+    displayName: Explain Rejection
+    triggerQueries:
+      - why did you reject {sku}
+      - why was {sku} blocked
+      - what should I do about {sku}
+
+  actions:
+    - kind: Question
+      id: askSku
+      variable: Topic.sku
+      prompt: Which SKU should I explain? (e.g. CAB-750-12)
+      entity: StringPrebuiltEntity
+
+    - kind: Question
+      id: askFacility
+      variable: Topic.facility
+      prompt: Which facility? (e.g. NJ-01)
+      entity: StringPrebuiltEntity
+
+    # Calls the validator endpoint to return the blocking evidence for one SKU.
+    - kind: InvokeConnectorAction
+      id: callValidate
+      connectionReference: call-foundry-sequential
+      operationId: validateSku
+      inputs:
+        facility: =Topic.facility
+        sku: =Topic.sku
+      output:
+        binding:
+          result: Topic.validation
+
+    - kind: SendActivity
+      id: explain
+      activity: |
+        Here's why **${Topic.sku}** at ${Topic.facility} is blocked:
+        - Reason: ${Topic.validation.reasons}
+        - Blocking wave: ${Topic.validation.blocking_wave_id}
+        - Open orders: ${Topic.validation.blocking_orders}
+
+        I can schedule a re-evaluation once the wave closes. Want me to do that?

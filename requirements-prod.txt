@@ -1,0 +1,32 @@
+# Production wiring dependencies (NOT required for the MOCK_MODE demo)
+#
+# These light up the real Foundry integration (FOUNDRY_MODE=live) and the
+# optional real Databricks path. Install with:
+#   uv pip install -r requirements-prod.txt
+#
+# NOTE: The Microsoft Agent Framework currently ships as a pre-release. Pin to the
+# latest stable release once one is published; until then install the latest
+# pre-release explicitly with: uv pip install --prerelease=allow -r requirements-prod.txt
+
+# Microsoft Foundry (Azure AI Foundry) live reasoning
+# azure-ai-projects (>= 2.0) exposes the Foundry project client AND the new
+# Agents experience (PromptAgentDefinition + Responses agent_reference). openai
+# is used for the chat-completion fallback; azure-identity provides
+# DefaultAzureCredential. Persistent agents created via azure-ai-projects show up
+# in the portal Agents list and are invoked when FOUNDRY_USE_AGENTS=true.
+azure-ai-projects>=2.0.0
+azure-identity
+openai
+
+# Optional: Microsoft Agent Framework (Foundry-native sequential workflow)
+agent-framework
+agent-framework-foundry
+
+# Tracing + monitoring — exports GenAI/workflow OpenTelemetry spans to the
+# Application Insights resource connected to the Foundry project, so the portal
+# Tracing / Monitoring tabs light up.
+azure-monitor-opentelemetry
+opentelemetry-instrumentation-openai-v2
+
+# Databricks (system of intelligence) — optional real data path
+databricks-sql-connector

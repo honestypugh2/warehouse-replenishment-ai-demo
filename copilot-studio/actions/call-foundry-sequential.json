@@ -1,0 +1,83 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Replenishment — Foundry Sequential",
+    "description": "Custom connector for the Copilot Studio agent to call the Foundry sequential replenishment workflow, validate SKUs, and approve writes. Secure with Entra ID OAuth2 in production.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": ["https", "http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/recommendations/sequential": {
+      "get": {
+        "operationId": "runSequential",
+        "summary": "Run the sequential replenishment review for a facility",
+        "description": "Run today's full replenishment review for a facility. Use this tool when the user asks to SEE, SHOW, LIST, or REVIEW replenishment recommendations, min/max suggestions, or what to replenish for a facility or warehouse. This runs the governed Foundry workflow (retrieval -> validation -> reasoning) and returns per-SKU current vs. suggested min/max, confidence, decision, active-wave warnings, and citations. Do NOT use this for a single specific SKU status question (use validateSku) or to apply a change (use approve).",
+        "parameters": [
+          {
+            "name": "facility",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Facility",
+            "default": "NJ-01"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Recommendations" }
+        }
+      }
+    },
+    "/validate": {
+      "get": {
+        "operationId": "validateSku",
+        "summary": "Validate a single SKU against live D365 state",
+        "description": "Explain the operational status of ONE specific SKU at a facility. Use this tool when the user asks WHY a SKU was rejected or flagged, whether a SKU is blocked by an active wave or open orders, or for the validation evidence behind a single SKU. This performs a deterministic D365 validation for that SKU only and returns pass/fail with the blocking wave id and orders. Do NOT use this to list all recommendations (use runSequential) or to apply a change (use approve).",
+        "parameters": [
+          { "name": "facility", "in": "query", "required": true, "type": "string", "x-ms-summary": "Facility" },
+          { "name": "sku", "in": "query", "required": true, "type": "string", "x-ms-summary": "SKU" }
+        ],
+        "responses": { "200": { "description": "Validation result" } }
+      }
+    },
+    "/approve": {
+      "post": {
+        "operationId": "approve",
+        "summary": "Approve a min-max change (writes to D365 via the writer agent)",
+        "description": "Apply an approved min/max change to D365 for a specific SKU. Use this tool ONLY after a human has explicitly approved a specific new min and max for a named SKU and facility. This writes to the system of record via the governed writer path and returns an audit id. Do NOT use this to generate or preview recommendations, and NEVER call it without explicit human approval — approval is a human action.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["sku", "facility", "new_min", "new_max", "approver_upn", "rationale"],
+              "properties": {
+                "sku": { "type": "string" },
+                "facility": { "type": "string" },
+                "new_min": { "type": "integer" },
+                "new_max": { "type": "integer" },
+                "approver_upn": { "type": "string" },
+                "rationale": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "Write result with audit id" } }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+      "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+      "scopes": {}
+    }
+  }
+}

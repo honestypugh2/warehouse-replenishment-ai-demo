@@ -1,0 +1,20 @@
+[
+  { "location": "PM-A12", "facility": "NJ-01", "max_units": 480, "slot_class": "fast" },
+  { "location": "PM-A14", "facility": "NJ-01", "max_units": 480, "slot_class": "fast" },
+  { "location": "PM-A16", "facility": "NJ-01", "max_units": 480, "slot_class": "fast" },
+  { "location": "PM-A18", "facility": "NJ-01", "max_units": 420, "slot_class": "fast" },
+  { "location": "PM-A20", "facility": "NJ-01", "max_units": 420, "slot_class": "medium" },
+  { "location": "PM-A22", "facility": "NJ-01", "max_units": 360, "slot_class": "medium" },
+  { "location": "PM-A24", "facility": "NJ-01", "max_units": 420, "slot_class": "fast" },
+  { "location": "PM-B03", "facility": "NJ-01", "max_units": 200, "slot_class": "medium" },
+  { "location": "PM-B05", "facility": "NJ-01", "max_units": 180, "slot_class": "slow" },
+  { "location": "PM-B07", "facility": "NJ-01", "max_units": 160, "slot_class": "slow" },
+  { "location": "PM-B09", "facility": "NJ-01", "max_units": 260, "slot_class": "medium" },
+  { "location": "PM-B11", "facility": "NJ-01", "max_units": 120, "slot_class": "slow" },
+  { "location": "PM-C07", "facility": "CA-02", "max_units": 600, "slot_class": "fast" },
+  { "location": "PM-C09", "facility": "CA-02", "max_units": 480, "slot_class": "fast" },
+  { "location": "PM-C11", "facility": "CA-02", "max_units": 420, "slot_class": "medium" },
+  { "location": "PM-C13", "facility": "CA-02", "max_units": 320, "slot_class": "medium" },
+  { "location": "PM-C19", "facility": "CA-02", "max_units": 160, "slot_class": "slow" },
+  { "location": "PM-C21", "facility": "CA-02", "max_units": 140, "slot_class": "slow" }
+]

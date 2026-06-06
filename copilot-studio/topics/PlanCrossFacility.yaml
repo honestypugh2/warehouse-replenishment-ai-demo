@@ -1,0 +1,39 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRecognizedIntent
+  id: PlanCrossFacility
+  intent:
+    displayName: Plan Cross-Facility Replenishment
+    triggerQueries:
+      - plan next week's min-max changes across facilities
+      - plan replenishment across {facilities}
+      - show me the top changes across NJ-01 and CA-02
+
+  actions:
+    - kind: Question
+      id: askFacilities
+      variable: Topic.facilities
+      prompt: Which facilities should I plan across? (comma-separated, e.g. NJ-01, CA-02)
+      entity: StringPrebuiltEntity
+
+    - kind: SendActivity
+      id: ack
+      activity: Waking up the planning agents (slotting, forecast, validator, risk)…
+
+    # Calls the Foundry multi-agent orchestrator via the custom connector action.
+    - kind: InvokeConnectorAction
+      id: callFoundryMultiAgent
+      connectionReference: call-foundry-multiagent
+      operationId: runMultiAgent
+      inputs:
+        facilities: =Split(Topic.facilities, ",")
+      output:
+        binding:
+          result: Topic.ranking
+
+    - kind: SendActivity
+      id: renderRanked
+      activity:
+        attachments:
+          - kind: AdaptiveCardTemplate
+            cardContent: "={ ranking: Topic.ranking }"  # bulk-approve card

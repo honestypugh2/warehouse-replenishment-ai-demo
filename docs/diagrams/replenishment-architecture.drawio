@@ -1,0 +1,100 @@
+<mxfile host="65bd71144e">
+    <diagram id="replen-accel-arch" name="Accelerator architecture">
+        <mxGraphModel dx="165" dy="424" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1450" pageHeight="800" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Replenishment demo architecture" style="text;html=1;align=left;verticalAlign=middle;fontSize=30;fontStyle=1;fontColor=#1B1B1B;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="20" width="700" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="foundry-box" value="" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F6CBD;strokeWidth=2;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="90" width="1370" height="470" as="geometry"/>
+                </mxCell>
+                <mxCell id="foundry-tab" value="  Microsoft Foundry · replen-project" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F6CBD;fontStyle=1;fontSize=14;fontColor=#0F6CBD;align=left;spacingLeft=12;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="100" width="300" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="dbx" value="Databricks&#xa;(candidates · mock)" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;html=1;whiteSpace=wrap;fillColor=#FDE7E9;strokeColor=#C50F1F;fontSize=12;fontStyle=1;verticalAlign=bottom;spacingBottom=6;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="220" width="150" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="d365" value="D365 F&amp;O&#xa;(waves · orders · mock)" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;html=1;whiteSpace=wrap;fillColor=#E6F2FB;strokeColor=#0F6CBD;fontSize=12;fontStyle=1;verticalAlign=bottom;spacingBottom=6;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="350" width="150" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="backend" value="FastAPI backend&#xa;REST API tool&#xa;(/recommendations,&#xa;/validate, /approve)" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#8A8886;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="285" width="150" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="wf-box" value="Agent Framework workflow" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#605E5C;verticalAlign=top;fontStyle=1;fontSize=13;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="175" width="590" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage-ret" value="Retriever" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F7E7D3;strokeColor=#CD7F32;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="235" width="150" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage-ret-cap" value="Retrieve candidates" style="text;html=1;align=center;fontSize=11;fontColor=#605E5C;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="338" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage-val" value="Validator" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EDEDED;strokeColor=#9E9E9E;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="235" width="150" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage-val-cap" value="Validate vs. waves/orders" style="text;html=1;align=center;fontSize=11;fontColor=#605E5C;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="338" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage-rec" value="Recommender" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCF3CF;strokeColor=#D4A017;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="235" width="150" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage-rec-cap" value="Decide + explain (grounded)" style="text;html=1;align=center;fontSize=11;fontColor=#605E5C;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="338" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="e-ret-val" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#605E5C;" parent="1" source="stage-ret" target="stage-val" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e-val-rec" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#605E5C;" parent="1" source="stage-val" target="stage-rec" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="agents-box" value="Persistent Foundry agents · gpt-4o&#xa;replen-retriever  ·  replen-validator  ·  replen-recommender" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;fillColor=#EFF6FC;strokeColor=#0F6CBD;fontSize=12;fontStyle=1;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="405" width="590" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="out-box" value="Consumption surfaces" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#605E5C;verticalAlign=top;fontStyle=1;fontSize=13;spacingTop=8;" parent="1" vertex="1">
+                    <mxGeometry x="1100" y="175" width="280" height="310" as="geometry"/>
+                </mxCell>
+                <mxCell id="out-cs" value="Copilot Studio (Hub)&#xa;approval cards + summary" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EFF6FC;strokeColor=#0F6CBD;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="210" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="out-ui" value="React demo UI&#xa;(Vite · :5173)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#8A8886;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="300" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="out-teams" value="Microsoft Teams channel&#xa;(planner)" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EAE6F8;strokeColor=#6B5BD2;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="390" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e-dbx-be" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#605E5C;" parent="1" source="dbx" target="backend" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e-d365-be" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#605E5C;" parent="1" source="d365" target="backend" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e-be-wf" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#605E5C;" parent="1" source="backend" target="stage-ret" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e-wf-out" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#605E5C;" parent="1" source="stage-rec" target="out-cs" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="band-gov" value="" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#EAF3FB;strokeColor=#0F6CBD;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="575" width="1370" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="band-gov-lbl" value="Human-in-the-loop approval  →  D365 write  (single governed path · /approve)" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#0F3D64;spacingLeft=16;" parent="1" vertex="1">
+                    <mxGeometry x="56" y="575" width="760" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="pill-grounded" value="Grounded + cited" style="rounded=1;arcSize=40;whiteSpace=wrap;html=1;fillColor=#0F6CBD;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="592" width="170" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pill-approval" value="Approval required" style="rounded=1;arcSize=40;whiteSpace=wrap;html=1;fillColor=#2899F5;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1200" y="592" width="180" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="band-obs" value="" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#8A8886;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="660" width="1370" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="band-obs-lbl" value="Application Insights  —  GenAI tracing, monitoring &amp; audit  (invoke_agent · chat gpt-4o · workflow.run spans)" style="text;html=1;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#3B3A39;spacingLeft=16;" parent="1" vertex="1">
+                    <mxGeometry x="56" y="660" width="1100" height="70" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

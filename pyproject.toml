@@ -1,0 +1,55 @@
+[project]
+name = "warehouse-replenishment-ai-demo"
+version = "0.1.0"
+description = "AI Warehouse Replenishment Orchestration Demo — governed, human-in-the-loop replenishment with Copilot Studio, Microsoft Foundry, Databricks, and D365."
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+authors = [{ name = "Demo Team" }]
+keywords = [
+    "copilot-studio",
+    "microsoft-foundry",
+    "agent-framework",
+    "databricks",
+    "d365",
+    "replenishment",
+]
+
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.5.0",
+    "httpx>=0.27.0",
+]
+
+# Production wiring (Foundry / Agent Framework / Databricks) is intentionally NOT
+# part of the default resolution so the MOCK_MODE demo installs cleanly. Those
+# packages currently ship as pre-releases; install them on demand with:
+#   uv pip install -r requirements-prod.txt
+# See requirements-prod.txt and docs/01-architecture.md for details.
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.7.0",
+    "pyyaml>=6.0.2",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# B008: FastAPI uses Query()/Depends() in argument defaults idiomatically.
+ignore = ["E501", "B008"]

@@ -1,0 +1,91 @@
+# Copilot Studio Solution — Replenishment Assistant
+# Importable solution (preview / solution-export format).
+#
+# How to import:
+#   1. Open Copilot Studio
+#   2. Go to Solutions
+#   3. Click Import solution
+#   4. Upload this YAML (or the exported .zip referencing it)
+#   5. Review and import
+#   6. Bind the environment variables + custom connectors (see copilot-studio/README.md)
+
+schemaVersion: 1.0
+solution:
+  name: ReplenishmentAssistant
+  displayName: Replenishment Assistant
+  publisher: ContosoWarehousing
+  version: 1.0.0.0
+  description: |
+    Copilot Studio agent for warehouse replenishment. Orchestrates Databricks,
+    Microsoft Foundry, and D365 to recommend and update min-max values with a
+    mandatory human approval gate.
+  icon: ./assets/icon.png
+  language: en-US
+  managed: false
+
+environmentVariables:
+  - name: FOUNDRY_SEQUENTIAL_ENDPOINT
+    displayName: Foundry Sequential Endpoint
+    type: Secret
+    description: HTTPS endpoint for the sequential workflow connector.
+  - name: FOUNDRY_MULTIAGENT_ENDPOINT
+    displayName: Foundry Multi-Agent Endpoint
+    type: Secret
+  - name: API_BASE_URL
+    displayName: FastAPI Backend Base URL
+    type: Secret
+  - name: TEAMS_APPROVAL_WEBHOOK
+    displayName: Teams Approval Webhook URL
+    type: Secret
+
+components:
+  agents:
+    - name: ReplenishmentAssistant
+      displayName: Replenishment Assistant
+      description: Conversational assistant for min-max replenishment.
+      icon: ./assets/agent_icon.png
+      model: gpt-4o
+      instructions: |
+        You are the Replenishment Assistant.
+        You help planners review AI-generated min-max recommendations.
+        You never invent min-max values.
+        You only show recommendations returned by the Foundry workflow.
+        You validate operational conditions (open orders, active waves) before
+        an update is proposed.
+        You never update D365 directly.
+        All updates require explicit human approval.
+        You provide clear rationale and citations.
+      topics:
+        - GetReplenRecommendations
+        - ExplainRejection
+        - ApproveMinMax
+        - PlanCrossFacility
+      triggerPhrases:
+        - replenishment
+        - min-max
+        - min max
+        - recommendations
+        - wave
+        - open orders
+
+  topics:
+    - name: GetReplenRecommendations
+      file: ./topics/GetReplenRecommendations.yaml
+    - name: ExplainRejection
+      file: ./topics/ExplainRejection.yaml
+    - name: ApproveMinMax
+      file: ./topics/ApproveMinMax.yaml
+    - name: PlanCrossFacility
+      file: ./topics/PlanCrossFacility.yaml
+
+  actions:
+    - name: call-foundry-sequential
+      file: ./actions/call-foundry-sequential.json
+    - name: call-foundry-multiagent
+      file: ./actions/call-foundry-multiagent.json
+
+  adaptiveCards:
+    - name: approval-card
+      file: ./adaptive-cards/approval-card.json
+    - name: rejection-card
+      file: ./adaptive-cards/rejection-card.json

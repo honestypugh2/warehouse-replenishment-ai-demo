@@ -1,0 +1,44 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Replenishment — Foundry Multi-Agent",
+    "description": "Custom connector for the Copilot Studio agent to call the Foundry multi-agent orchestrator for cross-facility planning. Secure with Entra ID OAuth2 in production.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": ["https", "http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/recommendations/multiagent": {
+      "get": {
+        "operationId": "runMultiAgent",
+        "summary": "Run the multi-agent cross-facility plan",
+        "parameters": [
+          {
+            "name": "facilities",
+            "in": "query",
+            "required": true,
+            "type": "array",
+            "items": { "type": "string" },
+            "collectionFormat": "multi",
+            "x-ms-summary": "Facilities"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Ranked cross-facility plan" }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+      "tokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+      "scopes": {}
+    }
+  }
+}

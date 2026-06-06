@@ -1,0 +1,20 @@
+[
+  { "sku": "CAB-750-12", "desc": "Cabernet Sauvignon 750ml — 12-pack", "facility": "NJ-01", "location": "PM-A12", "on_hand": 480, "uom": "EA" },
+  { "sku": "CHARD-750-12", "desc": "Chardonnay 750ml — 12-pack", "facility": "NJ-01", "location": "PM-A14", "on_hand": 612, "uom": "EA" },
+  { "sku": "PINOT-750-6", "desc": "Pinot Noir 750ml — 6-pack", "facility": "NJ-01", "location": "PM-B03", "on_hand": 150, "uom": "EA" },
+  { "sku": "MERL-750-12", "desc": "Merlot 750ml — 12-pack", "facility": "NJ-01", "location": "PM-A16", "on_hand": 540, "uom": "EA" },
+  { "sku": "SAUV-750-12", "desc": "Sauvignon Blanc 750ml — 12-pack", "facility": "NJ-01", "location": "PM-A18", "on_hand": 408, "uom": "EA" },
+  { "sku": "ZIN-750-6", "desc": "Zinfandel 750ml — 6-pack", "facility": "NJ-01", "location": "PM-B05", "on_hand": 132, "uom": "EA" },
+  { "sku": "MALB-750-12", "desc": "Malbec 750ml — 12-pack", "facility": "NJ-01", "location": "PM-A20", "on_hand": 372, "uom": "EA" },
+  { "sku": "RIES-750-12", "desc": "Riesling 750ml — 12-pack", "facility": "NJ-01", "location": "PM-A22", "on_hand": 288, "uom": "EA" },
+  { "sku": "SYR-750-6", "desc": "Syrah 750ml — 6-pack", "facility": "NJ-01", "location": "PM-B07", "on_hand": 114, "uom": "EA" },
+  { "sku": "GRIG-750-12", "desc": "Pinot Grigio 750ml — 12-pack", "facility": "NJ-01", "location": "PM-A24", "on_hand": 456, "uom": "EA" },
+  { "sku": "PROS-750-6", "desc": "Prosecco 750ml — 6-pack", "facility": "NJ-01", "location": "PM-B09", "on_hand": 168, "uom": "EA" },
+  { "sku": "PORT-750-6", "desc": "Port 750ml — 6-pack", "facility": "NJ-01", "location": "PM-B11", "on_hand": 96, "uom": "EA" },
+  { "sku": "ROSE-750-12", "desc": "Rosé 750ml — 12-pack", "facility": "CA-02", "location": "PM-C07", "on_hand": 720, "uom": "EA" },
+  { "sku": "SPARK-750-6", "desc": "Sparkling 750ml — 6-pack", "facility": "CA-02", "location": "PM-C19", "on_hand": 96, "uom": "EA" },
+  { "sku": "CHAMP-750-6", "desc": "Champagne 750ml — 6-pack", "facility": "CA-02", "location": "PM-C21", "on_hand": 84, "uom": "EA" },
+  { "sku": "BORD-750-12", "desc": "Bordeaux Blend 750ml — 12-pack", "facility": "CA-02", "location": "PM-C09", "on_hand": 564, "uom": "EA" },
+  { "sku": "CHIANTI-750-12", "desc": "Chianti 750ml — 12-pack", "facility": "CA-02", "location": "PM-C11", "on_hand": 492, "uom": "EA" },
+  { "sku": "TEMP-750-12", "desc": "Tempranillo 750ml — 12-pack", "facility": "CA-02", "location": "PM-C13", "on_hand": 336, "uom": "EA" }
+]

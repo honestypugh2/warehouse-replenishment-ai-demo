@@ -1,0 +1,30 @@
+# Groundedness evaluation
+#
+# Verifies that every recommendation traces back to real Databricks candidate
+# rows and D365 state, and that no min-max value is fabricated by the LLM.
+
+name: groundedness
+description: >
+  Each recommendation must cite a Databricks candidate id and the D365 state used
+  for validation. Recommended min-max values must equal the Databricks candidate
+  values exactly.
+
+target:
+  workflow: sequential_replen
+  facility: NJ-01
+
+assertions:
+  - id: has_databricks_citation
+    description: Every recommendation includes a databricks:// citation.
+    expression: all(any(c.startswith("databricks://") for c in r.citations) for r in recommendations)
+
+  - id: has_d365_citation
+    description: Every recommendation includes a d365:// citation.
+    expression: all(any(c.startswith("d365://") for c in r.citations) for r in recommendations)
+
+  - id: no_fabricated_values
+    description: Recommended values are never altered by the reasoner.
+    expression: all(r.candidate.recommended_min == source[r.candidate.sku].recommended_min for r in recommendations)
+
+threshold:
+  pass_rate: 1.0

@@ -1,0 +1,30 @@
+# Decision-quality evaluation
+#
+# Verifies the validator blocks the right SKUs and the reasoner classifies
+# decisions consistently with the confidence policy.
+
+name: decision_quality
+description: >
+  Candidates referenced by an active wave must be rejected. Passing candidates
+  with confidence >= 0.80 must be approve_suggested; otherwise needs_review.
+
+target:
+  workflow: sequential_replen
+  facility: NJ-01
+
+expected:
+  rejected_skus:
+    - CAB-750-12      # active wave WV-2026-06-05-014
+    - PROS-750-6      # active wave WV-2026-06-05-031
+
+assertions:
+  - id: blocks_active_wave_skus
+    description: All SKUs on an active wave are rejected.
+    expression: all(rec.decision == "reject" for rec in recommendations if rec.candidate.sku in expected.rejected_skus)
+
+  - id: confidence_policy
+    description: Passing candidates follow the confidence -> decision policy.
+    expression: all((rec.decision == "approve_suggested") == (rec.candidate.confidence >= 0.80) for rec in recommendations if rec.validation.passed)
+
+threshold:
+  pass_rate: 1.0
