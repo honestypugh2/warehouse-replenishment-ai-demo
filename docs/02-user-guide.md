@@ -94,6 +94,8 @@ the active Foundry mode.
 
 Open http://localhost:5173. The UI has two main tabs.
 
+![Replenishment demo landing page — header with Mock/Live Foundry toggle, Sequential review and Multi-agent plan tabs, facility picker, and the governance footer note](images/warehouse_replen_demo_main.png)
+
 ### Sequential review (Option A)
 
 A deterministic, audit-friendly pipeline:
@@ -118,6 +120,8 @@ A deterministic, audit-friendly pipeline:
 > SKUs on an active wave are blocked **before** reasoning. See
 > [04 — Governance](04-governance.md).
 
+![Sequential review results for NJ-01 — summary of 12 candidates (10 passed, 2 blocked) and recommendation cards showing min/max changes, confidence bars, citations, a blocked card with validator evidence, and Approve/Reject actions](images/warehouse_replen_demo_seq_review.png)
+
 ### Multi-agent plan (Option B)
 
 Cross-facility planning by a small team of specialist agents:
@@ -129,6 +133,8 @@ Cross-facility planning by a small team of specialist agents:
    a decision pill.
 5. Click **Bulk-approve high-confidence** to approve the high-confidence set in
    one action (still human-gated, still audited).
+
+![Multi-agent plan across NJ-01 and CA-02 — ranked top-15 table with per-row score, decision pill, and rationale, plus a Bulk-approve high-confidence action](images/warehouse_replen_demo_multiagent_plan.png)
 
 ---
 
