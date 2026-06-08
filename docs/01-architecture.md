@@ -76,9 +76,47 @@ and [`src/foundry/agents/orchestrator_agent.py`](../src/foundry/agents/orchestra
 - Business-apps users want a low-code hub they can maintain → **Copilot Studio**.
 - The data team wants pro-code control over reasoning, retrieval, and audit →
   **Foundry**.
-- Microsoft field guidance: lead with Copilot Studio, bring in Foundry where it
+- Microsoft guidance: lead with Copilot Studio, bring in Foundry where it
   materially adds value (deterministic multi-step workflows, cross-source
   grounding, multi-agent reasoning, pro-code observability).
+
+### Let Copilot Studio handle it directly when…
+
+- The workflow is simple and user-facing (daily replenishment review, inventory
+  exception handling, D365 update tracking, replenishment audit lookup).
+- You need approval experiences, notifications, or operational dashboards.
+- The orchestration is a simple, linear sequence the business can maintain.
+
+These map to low-code surfaces: backend API actions, a Databricks API wrapper,
+the D365 connector, an approval-workflow connector, Teams notifications, and
+Power Automate flows.
+
+### Call Foundry when…
+
+- Advanced, explainable reasoning is required.
+- Multiple operational conditions must be evaluated together.
+- Retrieval grounding across sources is needed.
+- A multi-agent workflow materially improves the outcome.
+
+In the **sequential** pattern, Foundry is the validation engine, grounded
+reasoning service, explainability generator, and operational policy evaluator.
+In the **multi-agent** pattern, Foundry additionally acts as agent coordinator,
+retrieval orchestrator, risk-scoring engine, and explainability consolidator.
+
+### Keep it business-user maintainable
+
+- **Keep:** prompts understandable, workflows modular, connectors reusable,
+  approvals visible, and operational logic documented.
+- **Avoid:** deep technical dependencies for small workflow changes and
+  excessively hidden orchestration logic.
+
+### Limitations
+
+- Copilot Studio alone may not handle highly complex orchestration elegantly.
+- Multi-agent coordination introduces operational complexity.
+- AI recommendations still require human governance.
+- Warehouse optimization remains operationally nuanced.
+- Retrieval-grounding quality depends on the quality of the source data.
 
 ## Mock vs. production
 
