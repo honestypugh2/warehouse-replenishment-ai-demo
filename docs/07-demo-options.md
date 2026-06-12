@@ -73,7 +73,7 @@ sequenceDiagram
     participant D365 as D365 FnO (Record)
     participant AI as App Insights
 
-    Planner->>CS: "Show today's replenishment recs for New Jersey"
+    Planner->>CS: "Show todays replenishment recs for New Jersey"
     CS->>API: GET /recommendations/sequential?facility=NJ-01
     API->>WF: run_sequential(NJ-01)
     WF->>DBX: Retriever - read candidate min/max + confidence

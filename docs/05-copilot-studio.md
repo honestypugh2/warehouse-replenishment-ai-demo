@@ -15,32 +15,25 @@ Studio), use [08 — Copilot Studio + Foundry setup guide](08-copilot-studio-set
 ```mermaid
 flowchart LR
     U([Business user]) -->|"Show todays replenishment recs for New Jersey"| CS
-
     subgraph CS["Copilot Studio - main entry point"]
         ORCH["Generative orchestration + topics"]
         CARDS["Adaptive Cards + generative summary"]
     end
-
     ORCH -->|"REST API tool runSequential"| API
-
     subgraph BE[FastAPI backend]
         API[recommendations route]
         WF["Agent Framework sequential workflow"]
         API --> WF
     end
-
     subgraph FY["Microsoft Foundry - replen-project"]
         RET[replen-retriever]
         VAL[replen-validator]
         REC[replen-recommender]
     end
-
     WF --> RET --> VAL --> REC --> WF
     REC -. traces/spans .-> AI[(App Insights)]
-
     RET -->|"candidate min/max, confidence"| DBX[("Databricks mock")]
     VAL -->|"active waves, open orders"| D365[("D365 mock")]
-
     WF -->|recommendations JSON| API --> CARDS --> U
 ```
 

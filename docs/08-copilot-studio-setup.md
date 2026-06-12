@@ -169,7 +169,7 @@ decision with two levers: **agent instructions** (global routing rules) and
 ```mermaid
 flowchart TD
     U([User prompt]) --> O{Copilot Studio generative orchestration}
-    O -->|greeting / vague| C[Answer directly: ask for facility]
+    O -->|greeting / vague| C[Answer directly ask for facility]
     O -->|definition / glossary| K[Answer from uploaded knowledge]
     O -->|show / list / review recommendations| R[Call runSequential]
     O -->|why was SKU X rejected / blocked| V[Call validateSku]

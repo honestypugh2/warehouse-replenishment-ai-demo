@@ -23,12 +23,12 @@ Anchor every screen and every conversation to one of these boxes.
 flowchart LR
     P[Planner in Teams] --> CS["Copilot Studio Hub"]
     CS --> F["Microsoft Foundry Engine"]
-    F -->|read candidates| DBX[("Databricks Intelligence")]
-    F -->|read open orders + waves| D365R[("D365 FnO Record")]
+    F -->|read candidates| DBX["Databricks Intelligence"]
+    F -->|read open orders + waves| D365R["D365 FnO Record"]
     F -->|approval card| CS
     CS -->|human approves| F
-    F -->|write min-max| D365W[("D365 FnO")]
-    F -->|trace| LAW[("Log Analytics")]
+    F -->|write min-max| D365W["D365 FnO"]
+    F -->|trace| LAW["Log Analytics"]
 ```
 
 ## Option A — Sequential orchestration (recommended for Phase 1)
