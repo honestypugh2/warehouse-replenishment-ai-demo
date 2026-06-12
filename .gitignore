@@ -97,6 +97,9 @@ dist-ssr/
 # OS specific
 Thumbs.db
 
+# Draw.io diagrams (keep locally only)
+*.drawio
+
 # Temporary files
 tmp/
 temp/
