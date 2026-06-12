@@ -27,7 +27,40 @@ Everything else works offline.
 
 ---
 
-## 2. Install
+## 2. Provision Azure infrastructure (live mode)
+
+If you plan to use **live Foundry** reasoning, provision the Azure resources
+**first**. This deploys the Foundry account, `gpt-4o` model, Key Vault,
+Application Insights, and RBAC role assignments.
+
+```bash
+az login
+azd auth login
+
+# Create an azd environment (names the resource group rg-<name>)
+azd env new replen-demo
+
+# Choose a region and (optionally) a tier
+azd env set AZURE_LOCATION eastus2
+azd env set DEPLOYMENT_TIER demo      # default; omit for demo tier
+
+# Provision everything
+azd provision
+```
+
+Outputs (Foundry endpoint, App Insights connection string, model deployment
+name) are written to `.azure/replen-demo/.env` and are automatically sourced by
+`start.sh --live`.
+
+See [`infra/README.md`](../infra/README.md) for full details, tier options
+(`dev` / `demo` / `prod`), RBAC notes, and how to tear down.
+
+> **Mock-only?** Skip this section entirely. `MOCK_MODE=true` (the default)
+> needs no Azure resources — the entire demo runs offline.
+
+---
+
+## 3. Install
 
 Clone the repo, then install backend and frontend dependencies:
 
@@ -48,7 +81,7 @@ first time if you skip it here.
 
 ---
 
-## 3. Run the demo (mock mode)
+## 4. Run the demo (mock mode)
 
 The simplest path launches both services with one command:
 
@@ -90,7 +123,7 @@ the active Foundry mode.
 
 ---
 
-## 4. Use the web app
+## 5. Use the web app
 
 Open http://localhost:5173. The UI has two main tabs.
 
@@ -138,7 +171,7 @@ Cross-facility planning by a small team of specialist agents:
 
 ---
 
-## 5. Use the API directly (optional)
+## 6. Use the API directly (optional)
 
 Every UI action maps to a REST endpoint. Examples (mock mode):
 
@@ -166,12 +199,15 @@ at http://localhost:8080/docs.
 
 ---
 
-## 6. Run with live Foundry (optional)
+## 7. Run with live Foundry (optional)
 
 In live mode, a real Azure AI Foundry model writes the natural-language
 explanation. **Databricks and D365 stay mocked**, and the decision, citations,
 and numbers remain deterministic — only the wording changes, and `reject` cases
 never call the model.
+
+> **Prerequisite:** You must have already provisioned the Azure infrastructure
+> (Section 2 above). If you skipped it, go back and run `azd provision` first.
 
 ### One-time setup
 
@@ -179,13 +215,7 @@ never call the model.
 # 1. Install the live dependencies (Agent Framework, azure-ai-projects, openai)
 uv pip install -r requirements-prod.txt
 
-# 2. Sign in to Azure
-az login
-
-# 3. Provision the Foundry project + Application Insights (writes .azure/<env>/.env)
-azd provision
-
-# 4. Provision the persistent Foundry agents so they appear in the portal
+# 2. Provision the persistent Foundry agents so they appear in the portal
 uv run python scripts/provision_foundry_agents.py
 ```
 
@@ -214,7 +244,7 @@ Application Insights. See [06 — Foundry](06-foundry.md) for the tracing detail
 
 ---
 
-## 7. Test & evaluate
+## 8. Test & evaluate
 
 ```bash
 uv run ruff check .                      # lint
@@ -227,7 +257,7 @@ CI runs the same steps plus the frontend build — see
 
 ---
 
-## 8. Troubleshooting
+## 9. Troubleshooting
 
 | Symptom | Fix |
 | --- | --- |

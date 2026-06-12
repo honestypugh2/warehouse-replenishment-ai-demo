@@ -37,9 +37,30 @@ See [docs/01-architecture.md](docs/01-architecture.md) for the full picture.
 
 ---
 
-## Quickstart (MOCK_MODE)
+## Quickstart
 
-### Backend — FastAPI service
+### Step 0 — Provision Azure infrastructure (live mode)
+
+If you plan to use **live Foundry** reasoning (recommended for the full
+experience), provision the infrastructure first:
+
+```bash
+az login
+azd auth login
+azd env new replen-demo
+azd env set AZURE_LOCATION eastus2
+azd provision                          # deploys Foundry, gpt-4o, Key Vault, App Insights, RBAC
+```
+
+This creates a resource group `rg-replen-demo` with the Foundry project,
+model deployment, Log Analytics, Key Vault, and Application Insights. Outputs
+are written to `.azure/replen-demo/.env`. See [infra/README.md](infra/README.md)
+for details and tier options (`dev` / `demo` / `prod`).
+
+> **Mock-only?** If you just want to run the demo offline without any Azure
+> resources, skip this step entirely — `MOCK_MODE=true` is the default.
+
+### Step 1 — Backend (FastAPI service)
 
 ```bash
 uv sync
@@ -53,7 +74,7 @@ curl http://localhost:8080/health
 curl "http://localhost:8080/recommendations/sequential?facility=NJ-01"
 ```
 
-### Frontend — React + Vite
+### Step 2 — Frontend (React + Vite)
 
 ```bash
 cd frontend
@@ -61,14 +82,14 @@ npm install
 npm run dev      # http://localhost:5173 (proxies /api → :8080)
 ```
 
-### Everything at once — start script
+### Step 3 — Or run everything at once
 
 ```bash
 ./start.sh          # mock mode (default) — fully offline
-./start.sh --live   # live Foundry reasoning (see "Two Foundry modes" below)
+./start.sh --live   # live Foundry reasoning (requires Step 0)
 ```
 
-### Everything at once — Docker Compose
+### Docker Compose (alternative)
 
 ```bash
 docker compose up --build

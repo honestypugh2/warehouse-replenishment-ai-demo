@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" width="1400" height="780">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', -apple-system, sans-serif; }
+      .platform-border { fill: #ffffff; stroke: #b0b0b0; stroke-width: 1.5; stroke-dasharray: 8,5; rx: 14; ry: 14; }
+      .platform-title { font-size: 16px; font-weight: 700; fill: #1a1a1a; }
+      .section-title { font-size: 12px; font-weight: 600; fill: #444; }
+      .component-box { fill: #ffffff; stroke: #d0d0d0; stroke-width: 1.2; rx: 8; ry: 8; }
+      .component-text { font-size: 11px; fill: #333; text-anchor: middle; }
+      .component-text-sm { font-size: 10px; fill: #555; text-anchor: middle; }
+      .data-region { fill: #eaf6ff; stroke: #a8d4f0; stroke-width: 1.2; rx: 10; ry: 10; }
+      .data-box { fill: #f0f8ff; stroke: #b8ddf5; stroke-width: 1; rx: 6; ry: 6; }
+      .d365-region { fill: #fff4e6; stroke: #f0c878; stroke-width: 1.2; rx: 10; ry: 10; }
+      .d365-box { fill: #fffbf0; stroke: #f0d090; stroke-width: 1; rx: 6; ry: 6; }
+      .foundation-label { font-size: 11px; font-weight: 600; fill: #1a6fb5; }
+      .d365-label { font-size: 11px; font-weight: 600; fill: #a06800; }
+      .connector { fill: none; stroke: #a0a0a0; stroke-width: 1.3; stroke-dasharray: 5,4; }
+      .connector-solid { fill: none; stroke: #a0a0a0; stroke-width: 1.3; }
+      .arrow { fill: #a0a0a0; }
+    </style>
+    <marker id="arr" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" class="arrow"/>
+    </marker>
+    <marker id="arr-rev" markerWidth="9" markerHeight="7" refX="1" refY="3.5" orient="auto">
+      <polygon points="9 0,0 3.5,9 7" class="arrow"/>
+    </marker>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1400" height="780" fill="#f9fafb"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- DATABRICKS — System of Intelligence (Left) -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="30" y="25" width="380" height="360" class="platform-border"/>
+  <text x="65" y="55" class="platform-title">📊 Databricks</text>
+  <text x="65" y="73" style="font-size:11px;fill:#666;">System of Intelligence</text>
+
+  <!-- Min-Max Candidate Engine -->
+  <rect x="55" y="95" width="160" height="60" class="component-box" filter="url(#shadow)"/>
+  <text x="135" y="120" class="component-text">Min-Max</text>
+  <text x="135" y="135" class="component-text">Candidate Engine</text>
+
+  <!-- Velocity &amp; History Analysis -->
+  <rect x="240" y="95" width="145" height="60" class="component-box" filter="url(#shadow)"/>
+  <text x="312" y="120" class="component-text">Velocity &amp;</text>
+  <text x="312" y="135" class="component-text">History Analysis</text>
+
+  <!-- Databricks SQL -->
+  <rect x="55" y="200" width="160" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="135" y="232" class="component-text">Databricks SQL</text>
+
+  <!-- Demand Forecasting -->
+  <rect x="240" y="200" width="145" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="312" y="225" class="component-text">Demand</text>
+  <text x="312" y="240" class="component-text">Forecasting</text>
+
+  <!-- Internal arrows -->
+  <line x1="135" y1="200" x2="135" y2="158" class="connector-solid" marker-end="url(#arr)"/>
+  <line x1="312" y1="200" x2="312" y2="158" class="connector-solid" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- Warehouse Data Foundation (Bottom-Left) -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="30" y="420" width="380" height="330" class="data-region"/>
+
+  <rect x="50" y="455" width="68" height="55" class="data-box" filter="url(#shadow)"/>
+  <text x="84" y="479" class="component-text">Candi-</text>
+  <text x="84" y="493" class="component-text">dates</text>
+
+  <rect x="130" y="455" width="68" height="55" class="data-box" filter="url(#shadow)"/>
+  <text x="164" y="479" class="component-text">SKU</text>
+  <text x="164" y="493" class="component-text">Inventory</text>
+
+  <rect x="210" y="455" width="68" height="55" class="data-box" filter="url(#shadow)"/>
+  <text x="244" y="479" class="component-text">Open</text>
+  <text x="244" y="493" class="component-text">Orders</text>
+
+  <rect x="290" y="455" width="55" height="55" class="data-box" filter="url(#shadow)"/>
+  <text x="317" y="486" class="component-text">Waves</text>
+
+  <rect x="357" y="455" width="42" height="55" class="data-box" filter="url(#shadow)"/>
+  <text x="378" y="479" class="component-text">Capa-</text>
+  <text x="378" y="493" class="component-text">city</text>
+
+  <text x="55" y="720" class="foundation-label">🔵 Warehouse Data Foundation (data/)</text>
+
+  <!-- Arrow: Data → Databricks -->
+  <line x1="220" y1="420" x2="220" y2="388" class="connector" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- MICROSOFT 365 COPILOT (Center) -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="450" y="25" width="380" height="240" class="platform-border"/>
+  <text x="485" y="55" class="platform-title">🔵 Microsoft 365 Copilot</text>
+
+  <!-- Copilot Studio sub-label -->
+  <text x="485" y="82" class="section-title">Copilot Studio — Hub</text>
+
+  <!-- Replenishment Assistant -->
+  <rect x="485" y="95" width="155" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="562" y="118" class="component-text">Replenishment</text>
+  <text x="562" y="133" class="component-text">Assistant</text>
+
+  <!-- Topics &amp; Flows -->
+  <rect x="665" y="95" width="140" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="735" y="118" class="component-text">Topics &amp;</text>
+  <text x="735" y="133" class="component-text">Flows</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- Teams Channel (Center-Mid) -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="450" y="295" width="380" height="180" class="platform-border"/>
+  <text x="580" y="322" class="platform-title">Teams Channel</text>
+
+  <rect x="475" y="340" width="100" height="50" class="component-box" filter="url(#shadow)"/>
+  <text x="525" y="369" class="component-text">Approval Cards</text>
+
+  <rect x="590" y="340" width="100" height="50" class="component-box" filter="url(#shadow)"/>
+  <text x="640" y="369" class="component-text">Rejection Cards</text>
+
+  <rect x="705" y="340" width="100" height="50" class="component-box" filter="url(#shadow)"/>
+  <text x="755" y="362" class="component-text">Planner</text>
+  <text x="755" y="377" class="component-text">Conversations</text>
+
+  <text x="560" y="455" style="font-size:10px;fill:#777;font-style:italic;">Human-in-the-Loop Approval</text>
+
+  <!-- Arrow: Teams → Copilot Studio -->
+  <line x1="640" y1="295" x2="640" y2="268" class="connector" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- FastAPI Backend (Center-Bottom) -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="450" y="510" width="380" height="120" class="platform-border" style="stroke:#70b070;"/>
+  <text x="485" y="540" class="platform-title">⚡ FastAPI Backend</text>
+
+  <rect x="475" y="555" width="100" height="48" class="component-box" filter="url(#shadow)"/>
+  <text x="525" y="577" class="component-text">/recommendations</text>
+  <text x="525" y="591" class="component-text">/sequential</text>
+
+  <rect x="590" y="555" width="80" height="48" class="component-box" filter="url(#shadow)"/>
+  <text x="630" y="583" class="component-text">/validate</text>
+
+  <rect x="685" y="555" width="80" height="48" class="component-box" filter="url(#shadow)"/>
+  <text x="725" y="583" class="component-text">/approve</text>
+
+  <!-- Arrow: Backend → Copilot Studio -->
+  <line x1="640" y1="510" x2="640" y2="478" class="connector" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- MICROSOFT FOUNDRY — Reasoning Engine (Right) -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="870" y="25" width="500" height="360" class="platform-border"/>
+  <text x="905" y="55" class="platform-title">🟣 Microsoft Foundry</text>
+  <text x="905" y="73" style="font-size:11px;fill:#666;">Reasoning Engine</text>
+
+  <!-- Agent Orchestration annotation -->
+  <text x="1180" y="73" class="component-text-sm" style="fill:#888;">Sequential Orchestration</text>
+
+  <!-- Agent Framework sub-region -->
+  <rect x="890" y="85" width="460" height="130" class="platform-border" style="stroke-dasharray:4,3;"/>
+  <text x="915" y="108" class="section-title">🔵 Agent Framework</text>
+
+  <!-- Retriever Agent -->
+  <rect x="910" y="118" width="120" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="970" y="143" class="component-text">Retriever</text>
+  <text x="970" y="158" class="component-text">Agent</text>
+
+  <!-- Validator Agent -->
+  <rect x="1055" y="118" width="120" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="1115" y="143" class="component-text">Validator</text>
+  <text x="1115" y="158" class="component-text">Agent</text>
+
+  <!-- Recommender Agent -->
+  <rect x="1200" y="118" width="120" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="1260" y="143" class="component-text">Recommender</text>
+  <text x="1260" y="158" class="component-text">Agent</text>
+
+  <!-- Flow arrows between agents -->
+  <line x1="1030" y1="145" x2="1052" y2="145" class="connector-solid" marker-end="url(#arr)"/>
+  <line x1="1175" y1="145" x2="1197" y2="145" class="connector-solid" marker-end="url(#arr)"/>
+
+  <!-- Azure OpenAI -->
+  <rect x="910" y="260" width="140" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="980" y="285" class="component-text">Azure OpenAI</text>
+  <text x="980" y="300" class="component-text">gpt-4o</text>
+
+  <!-- Application Insights -->
+  <rect x="1080" y="260" width="140" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="1150" y="285" class="component-text">Application</text>
+  <text x="1150" y="300" class="component-text">Insights</text>
+
+  <!-- Key Vault -->
+  <rect x="1250" y="260" width="100" height="55" class="component-box" filter="url(#shadow)"/>
+  <text x="1300" y="291" class="component-text">Key Vault</text>
+
+  <!-- Arrows from services up to Agent Framework -->
+  <line x1="980" y1="260" x2="980" y2="218" class="connector" marker-end="url(#arr)"/>
+  <line x1="1150" y1="260" x2="1150" y2="218" class="connector" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- D365 F&amp;O — System of Record (Bottom-Right) -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="920" y="420" width="400" height="330" class="d365-region"/>
+
+  <rect x="960" y="470" width="140" height="55" class="d365-box" filter="url(#shadow)"/>
+  <text x="1030" y="494" class="component-text">Min-Max</text>
+  <text x="1030" y="509" class="component-text">Parameters</text>
+
+  <rect x="1130" y="470" width="140" height="55" class="d365-box" filter="url(#shadow)"/>
+  <text x="1200" y="494" class="component-text">Open Orders &amp;</text>
+  <text x="1200" y="509" class="component-text">Wave Status</text>
+
+  <text x="960" y="720" class="d365-label">📦 D365 F&amp;O — System of Record</text>
+
+  <!-- Arrow: D365 → Foundry -->
+  <line x1="1120" y1="420" x2="1120" y2="388" class="connector" marker-end="url(#arr)"/>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- Cross-platform connectors -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+
+  <!-- Databricks ↔ M365 Copilot -->
+  <line x1="410" y1="150" x2="447" y2="150" class="connector" marker-end="url(#arr)" marker-start="url(#arr-rev)"/>
+
+  <!-- M365 Copilot ↔ Foundry -->
+  <line x1="830" y1="150" x2="867" y2="150" class="connector" marker-end="url(#arr)" marker-start="url(#arr-rev)"/>
+
+  <!-- Backend → Foundry -->
+  <path d="M 830 570 Q 870 570 870 400" class="connector" marker-end="url(#arr)"/>
+
+  <!-- Backend → Databricks -->
+  <path d="M 450 570 Q 410 570 410 388" class="connector" marker-end="url(#arr)"/>
+
+</svg>
