@@ -168,12 +168,12 @@ decision with two levers: **agent instructions** (global routing rules) and
 
 ```mermaid
 flowchart TD
-    U([User prompt]) --> O{Copilot Studio<br/>generative orchestration}
-    O -->|greeting / vague| C[Answer directly:<br/>ask for facility]
-    O -->|definition / glossary| K[Answer from<br/>uploaded knowledge]
-    O -->|show / list / review<br/>recommendations| R[Call runSequential]
-    O -->|why was SKU X<br/>rejected / blocked| V[Call validateSku]
-    O -->|apply / approve<br/>min-max for SKU X| A[Call approve<br/>after human OK]
+    U([User prompt]) --> O{Copilot Studio generative orchestration}
+    O -->|greeting / vague| C[Answer directly: ask for facility]
+    O -->|definition / glossary| K[Answer from uploaded knowledge]
+    O -->|show / list / review recommendations| R[Call runSequential]
+    O -->|why was SKU X rejected / blocked| V[Call validateSku]
+    O -->|apply / approve min-max for SKU X| A[Call approve after human OK]
     R --> F[(Foundry workflow)]
     V --> F
     A --> D[(D365 write + audit)]

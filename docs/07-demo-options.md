@@ -29,13 +29,13 @@ The 4-box model both options share:
 
 ```mermaid
 flowchart LR
-    P([Planner in Teams]) --> CS[Copilot Studio<br/>Hub]
-    CS --> F[Microsoft Foundry<br/>Engine]
-    F -->|read candidates| DBX[(Databricks<br/>Intelligence)]
-    F -->|read waves + orders| D365R[(D365 F&O<br/>Record)]
+    P([Planner in Teams]) --> CS["Copilot Studio Hub"]
+    CS --> F["Microsoft Foundry Engine"]
+    F -->|read candidates| DBX[("Databricks Intelligence")]
+    F -->|read waves + orders| D365R[("D365 FnO Record")]
     F -->|approval card| CS
     CS -->|human approves| F
-    F -->|write min-max| D365W[(D365 F&O)]
+    F -->|write min-max| D365W[("D365 FnO")]
     F -.->|traces| AI[(App Insights)]
 ```
 
@@ -70,7 +70,7 @@ sequenceDiagram
     participant API as FastAPI backend
     participant WF as Foundry sequential workflow
     participant DBX as Databricks (Intelligence)
-    participant D365 as D365 F&O (Record)
+    participant D365 as D365 FnO (Record)
     participant AI as App Insights
 
     Planner->>CS: "Show today's replenishment recs for New Jersey"
@@ -171,7 +171,7 @@ sequenceDiagram
     participant ORCH as Foundry orchestrator
     participant SPEC as Specialist agents
     participant DBX as Databricks (Intelligence)
-    participant D365 as D365 F&O (Record)
+    participant D365 as D365 FnO (Record)
     participant AI as App Insights
 
     Planner->>CS: "Plan replenishment across New Jersey and California"
@@ -275,19 +275,19 @@ the planner's point of view.
 ```mermaid
 flowchart LR
     subgraph Intelligence
-        DBX[(Databricks<br/>min-max candidates)]
+        DBX[("Databricks min-max candidates")]
     end
     subgraph Reasoning [Microsoft Foundry]
         RET[Retriever] --> VAL[Validator] --> REC[Recommender]
     end
     subgraph Hub [Copilot Studio]
-        CARD[Adaptive Card<br/>recommendation]
-        GATE{Human<br/>approval?}
+        CARD["Adaptive Card recommendation"]
+        GATE{"Human approval?"}
     end
     subgraph Record
-        D365[(D365 F&O<br/>min-max)]
+        D365[("D365 FnO min-max")]
     end
-    AUD[(App Insights<br/>audit + traces)]
+    AUD[("App Insights audit + traces")]
 
     DBX --> RET
     VAL -->|read waves + orders| D365
@@ -316,18 +316,18 @@ with writes gated by approval.
 flowchart TB
     subgraph L1 [Experience layer]
         direction LR
-        TEAMS[Teams channel] --- CSHUB[Copilot Studio hub<br/>topics · approvals · routing]
+        TEAMS[Teams channel] --- CSHUB["Copilot Studio hub: topics, approvals, routing"]
     end
     subgraph L2 [Reasoning layer]
         direction LR
-        WF[Agent Framework workflow] --- AG[Persistent Foundry agents<br/>retriever · validator · recommender]
+        WF[Agent Framework workflow] --- AG["Persistent Foundry agents: retriever, validator, recommender"]
     end
     subgraph L3 [Data + record layer]
         direction LR
-        DBX[(Databricks<br/>intelligence)] --- D365[(D365 F&O<br/>record)]
+        DBX[("Databricks intelligence")] --- D365[("D365 FnO record")]
     end
     subgraph L4 [Observability]
-        AI[(App Insights · Log Analytics)]
+        AI[("App Insights / Log Analytics")]
     end
 
     L1 -->|REST API tool / agent tool| L2
@@ -350,17 +350,17 @@ single write path, and the audit trail.
 
 ```mermaid
 flowchart TD
-    U([Planner identity<br/>Entra ID / RBAC]) --> CS[Copilot Studio<br/>authenticated session]
+    U(["Planner identity Entra ID / RBAC"]) --> CS["Copilot Studio authenticated session"]
     CS --> REQ[Recommendation request]
-    REQ --> F[Foundry reasoning<br/>grounded + explainable]
-    F --> SCORE{Confidence +<br/>active-wave check}
-    SCORE -->|blocked / low| HOLD[No approve button<br/>flag for manual review]
-    SCORE -->|eligible| CARD[Approval card<br/>citations + rationale]
+    REQ --> F["Foundry reasoning: grounded + explainable"]
+    F --> SCORE{"Confidence + active-wave check"}
+    SCORE -->|blocked / low| HOLD["No approve button, flag for manual review"]
+    SCORE -->|eligible| CARD["Approval card: citations + rationale"]
     CARD --> H{Human approves?}
     H -->|no| HOLD
-    H -->|yes| WRITE[Governed /approve endpoint]
-    WRITE --> D365[(D365 F&O write)]
-    WRITE --> AUDIT[(Audit log<br/>approver · rationale · audit_id)]
+    H -->|yes| WRITE["Governed /approve endpoint"]
+    WRITE --> D365[("D365 FnO write")]
+    WRITE --> AUDIT[("Audit log: approver, rationale, audit_id")]
     F -.-> TRACE[(Agent + workflow traces)]
 ```
 
@@ -376,12 +376,12 @@ rationale, `audit_id`) · full agent/workflow tracing. See
 
 ```mermaid
 flowchart TD
-    Q1{Single facility,<br/>well-defined steps?} -->|Yes| A[Option A<br/>Sequential]
-    Q1 -->|No| Q2{Multi-facility or<br/>cross-domain reasoning?}
-    Q2 -->|Yes| Q3{Team ready for<br/>agent-level governance<br/>+ eval harness?}
+    Q1{"Single facility, well-defined steps?"} -->|Yes| A["Option A Sequential"]
+    Q1 -->|No| Q2{"Multi-facility or cross-domain reasoning?"}
+    Q2 -->|Yes| Q3{"Team ready for agent-level governance + eval harness?"}
     Q2 -->|No| A
-    Q3 -->|Yes| B[Option B<br/>Multi-Agent]
-    Q3 -->|Not yet| A2[Start with Option A,<br/>expand into B incrementally]
+    Q3 -->|Yes| B["Option B Multi-Agent"]
+    Q3 -->|Not yet| A2["Start with Option A, expand into B incrementally"]
 ```
 
 | Question | Lean A | Lean B |
