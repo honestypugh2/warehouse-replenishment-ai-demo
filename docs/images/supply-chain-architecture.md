@@ -6,16 +6,16 @@ This diagram represents the end-to-end warehouse replenishment architecture span
 
 ```mermaid
 graph TB
-    subgraph Databricks["📊 Databricks — System of Intelligence"]
+    subgraph Databricks["Databricks - System of Intelligence"]
         direction TB
-        MME[Min-Max Candidate<br/>Engine]
-        VH[Velocity &amp; History<br/>Analysis]
+        MME["Min-Max Candidate Engine"]
+        VH["Velocity and History Analysis"]
         DSQL[Databricks SQL]
         DSQL --> MME
         VH --> MME
     end
 
-    subgraph DataFoundation["🔵 Warehouse Data Foundation"]
+    subgraph DataFoundation["Warehouse Data Foundation"]
         direction LR
         CAND[Candidates]
         INV[SKU Inventory]
@@ -24,11 +24,11 @@ graph TB
         CAP[Capacity]
     end
 
-    subgraph M365["🔵 Microsoft 365 Copilot"]
+    subgraph M365["Microsoft 365 Copilot"]
         direction TB
-        subgraph CS["Copilot Studio — Hub"]
-            RA[Replenishment<br/>Assistant]
-            TOP[Topics &amp; Flows]
+        subgraph CS["Copilot Studio - Hub"]
+            RA["Replenishment Assistant"]
+            TOP["Topics and Flows"]
         end
     end
 
@@ -36,30 +36,30 @@ graph TB
         direction LR
         AC[Approval Cards]
         RC[Rejection Cards]
-        CONV[Planner<br/>Conversations]
+        CONV["Planner Conversations"]
     end
 
     subgraph Backend["⚡ FastAPI Backend"]
         direction LR
-        RSEQ[/recommendations/<br/>sequential]
-        RVAL[/validate]
-        RAPP[/approve]
+        RSEQ["recommendations/sequential"]
+        RVAL["validate"]
+        RAPP["approve"]
     end
 
-    subgraph Foundry["🟣 Microsoft Foundry — Reasoning Engine"]
+    subgraph Foundry["Microsoft Foundry - Reasoning Engine"]
         direction TB
-        subgraph AgentFW["🔵 Agent Framework — Sequential Orchestration"]
+        subgraph AgentFW["Agent Framework - Sequential Orchestration"]
             RET[Retriever Agent]
             VAL[Validator Agent]
             REC[Recommender Agent]
         end
-        AOAI[Azure OpenAI<br/>gpt-4o]
-        AI[Application<br/>Insights]
+        AOAI["Azure OpenAI gpt-4o"]
+        AI[Application Insights]
     end
 
-    subgraph D365["📦 D365 F&amp;O — System of Record"]
-        MMP[Min-Max<br/>Parameters]
-        OO[Open Orders<br/>&amp; Wave Status]
+    subgraph D365["D365 F and O - System of Record"]
+        MMP["Min-Max Parameters"]
+        OO["Open Orders and Wave Status"]
     end
 
     %% Data flow connections
